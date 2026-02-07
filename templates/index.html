@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            background: #ffffff;
+            width: 800px;
+            padding: 35px 40px;
+            border-radius: 18px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Profile */
+        .profile {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .profile img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            border: 5px solid #667eea;
+            object-fit: cover;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+
+        .profile h2 {
+            margin: 12px 0 5px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .profile p {
+            margin: 0;
+            font-size: 14px;
+            color: #777;
+        }
+
+        h1 {
+            text-align: center;
+            margin: 20px 0 30px;
+            color: #444;
+            font-size: 28px;
+        }
+
+        /* Form */
+        form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+        }
+
+        label {
+            font-size: 14px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: all 0.3s;
+        }
+
+        input:focus {
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102,126,234,0.2);
+        }
+
+        button {
+            grid-column: span 3;
+            padding: 14px;
+            margin-top: 10px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+        }
+
+        /* Result */
+        .result {
+            margin-top: 25px;
+            padding: 15px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #2e7d32;
+            background: #e8f5e9;
+            border-radius: 10px;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                width: 95%;
+            }
+
+            form {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            button {
+                grid-column: span 2;
+            }
+        }
+
+        @media (max-width: 500px) {
+            form {
+                grid-template-columns: 1fr;
+            }
+
+            button {
+                grid-column: span 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+<div class="container">
+
+    <!-- Profile -->
+    <div class="profile">
+        <img src="{{ url_for('static', filename='nagendhra.jpg') }}" alt="G Nagendhra Prasad">
+        <h2>G Nagendhra Prasad</h2>
+        <p>Machine Learning Project</p>
+    </div>
+
+    <h1>🏠 House Price Prediction</h1>
+
+    <form method="post">
+
+        <div>
+            <label>Bedrooms</label>
+            <input type="number" name="bedrooms" required>
+        </div>
+
+        <div>
+            <label>Bathrooms</label>
+            <input type="number" step="any" name="bathrooms" required>
+        </div>
+
+        <div>
+            <label>Sqft Living</label>
+            <input type="number" name="sqft_living" required>
+        </div>
+
+        <div>
+            <label>Sqft Lot</label>
+            <input type="number" name="sqft_lot" required>
+        </div>
+
+        <div>
+            <label>Floors</label>
+            <input type="number" step="any" name="floors" required>
+        </div>
+
+        <div>
+            <label>Waterfront</label>
+            <input type="number" name="waterfront" required>
+        </div>
+
+        <div>
+            <label>View</label>
+            <input type="number" name="view" required>
+        </div>
+
+        <div>
+            <label>Condition</label>
+            <input type="number" name="condition" required>
+        </div>
+
+        <div>
+            <label>Sqft Above</label>
+            <input type="number" name="sqft_above" required>
+        </div>
+
+        <div>
+            <label>Sqft Basement</label>
+            <input type="number" name="sqft_basement" required>
+        </div>
+
+        <div>
+            <label>Year Built</label>
+            <input type="number" name="yr_built" required>
+        </div>
+
+        <div>
+            <label>Year Renovated</label>
+            <input type="number" name="yr_renovated" required>
+        </div>
+
+        <div>
+            <label>Year</label>
+            <input type="number" name="year" required>
+        </div>
+
+        <div>
+            <label>Month</label>
+            <input type="number" name="month" required>
+        </div>
+
+        <div>
+            <label>Day</label>
+            <input type="number" name="day" required>
+        </div>
+
+        <button type="submit">Predict House Price</button>
+    </form>
+
+    {% if prediction is not none %}
+        <div class="result">
+            Predicted Price: {{ prediction }}
+        </div>
+    {% endif %}
+
+</div>
+</body>
+</html>
